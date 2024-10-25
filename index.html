@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estimator</title>
+
+    <style>
+        #output {
+            margin-top: 40px;
+            display: block;
+        }
+        #outputSection {
+            margin-top: 40px;
+        }
+        #ButtonMS {
+            margin-top: 40px;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <h1>Login test1</h1>
+
+
+    <form id="textForm">
+        <label for="textInput">Enter text:</label>
+        <input type="text" id="textInput" name="textInput" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <button id="ButtonMS">Login MS</button>
+
+    <button id="output">Click to receive output</button>
+
+
+    <div id="outputSection">
+        <h3>Text received:</h3>
+        <textarea id="outputTextArea" rows="4" cols="50" readonly></textarea>
+    </div>
+
+    <!-- Include MSAL.js from CDN -->
+    <script src="https://alcdn.msauth.net/browser/2.18.0/js/msal-browser.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
