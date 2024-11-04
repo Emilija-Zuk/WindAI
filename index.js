@@ -10,17 +10,22 @@ document.getElementById("ButtonMS").addEventListener("click", () => {
 document.getElementById("textForm").addEventListener("submit", (event) => {
     event.preventDefault(); // Prevent page refresh
     enteredText = document.getElementById("textInput").value;
-    console.log("Text entered: " + enteredText);
+    console.log("Text entered: " + enteredText );
 });
 
 // Output button listener
 document.getElementById("output").addEventListener("click", () => {
-    fetch('https://qitizwxnn0.execute-api.ap-southeast-2.amazonaws.com/test1/submit', {
+    fetch('https://xvg6hor5gb.execute-api.ap-southeast-2.amazonaws.com/test1/submit', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json'
+            
         },
-        body: JSON.stringify({ message: enteredText }) , 
+
+
+        body: JSON.stringify({
+                body: JSON.stringify({ message: enteredText + "xvg6hor5gb"}) // Wrap it in a "body" field
+        }),
     })
     .then(response => {
         if (!response.ok) {

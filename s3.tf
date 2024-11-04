@@ -63,7 +63,7 @@ resource "aws_s3_object" "index_html" {
   key    = "index.html"
   source = "${path.module}/index.html"
   content_type = "text/html"
-
+  etag          = filemd5("${path.module}/index.html")
   # depends_on = [aws_s3_bucket_policy.static_website_policy]
 }
 
@@ -72,5 +72,6 @@ resource "aws_s3_object" "index_js" {
   key    = "index.js"
   source = "${path.module}/index.js"
   content_type = "application/javascript"
+  etag          = filemd5("${path.module}/index.js")
   # depends_on = [aws_s3_bucket_policy.static_website_policy]
 }
