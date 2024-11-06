@@ -7,6 +7,26 @@
 
 
 
+{
+  "message": "testest"
+}
+
+body: JSON.stringify({ text: enteredText }),
+
+
+{
+    "body": "{\"message\": \"testest\"}"
+}
+
+ body: JSON.stringify({
+                body: JSON.stringify({ message: enteredText }) // Wrap it in a "body" field
+        }),
+
+
+  request_templates = {
+    "application/json" = "Empty"
+  }
+
 
 
 resource "aws_api_gateway_integration_response" "lambda_integration_response" {

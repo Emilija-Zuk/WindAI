@@ -2,7 +2,7 @@
 
 resource "aws_s3_bucket" "static_website" {
 
-  bucket = "estimator2"
+  bucket = "windapp1"
 
   tags = {
     Name        = "My test bucket"
@@ -55,7 +55,16 @@ resource "aws_s3_bucket_policy" "static_website_policy" {
   ]
 }
 
+resource "aws_s3_bucket_cors_configuration" "cors" {
+  bucket = aws_s3_bucket.static_website.id
 
+  cors_rule {
+    allowed_methods = ["GET", "POST", "PUT"]
+    allowed_origins = ["http://windapp1.s3-website-ap-southeast-2.amazonaws.com"]
+    allowed_headers = ["*"]
+    expose_headers  = ["ETag"]
+  }
+}
 
 
 resource "aws_s3_object" "index_html" {
@@ -75,3 +84,16 @@ resource "aws_s3_object" "index_js" {
   etag          = filemd5("${path.module}/index.js")
   # depends_on = [aws_s3_bucket_policy.static_website_policy]
 }
+
+
+resource "aws_s3_object" "api_id_object" {
+  bucket = "windapp1"
+  key    = "api_id.txt"
+  content = aws_api_gateway_rest_api.my_api.id 
+  etag    = md5(aws_api_gateway_rest_api.my_api.id)
+   depends_on = [
+    aws_api_gateway_rest_api.my_api,
+    local_file.api_id_file
+  ]
+}
+

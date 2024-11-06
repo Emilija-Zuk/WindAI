@@ -1,5 +1,7 @@
 let output = ""; 
 let enteredText = "default";
+let apiUrl = "";
+let myAPI = "";
 
 // MS Login button listener
 document.getElementById("ButtonMS").addEventListener("click", () => {
@@ -15,28 +17,42 @@ document.getElementById("textForm").addEventListener("submit", (event) => {
 
 // Output button listener
 document.getElementById("output").addEventListener("click", () => {
-    fetch('https://xvg6hor5gb.execute-api.ap-southeast-2.amazonaws.com/test1/submit', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-            
-        },
-
-
-        body: JSON.stringify({
-                body: JSON.stringify({ message: enteredText + "xvg6hor5gb"}) // Wrap it in a "body" field
-        }),
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+    fetchApiData().then(() => {
+        if (!apiUrl) {
+            console.error("API URL not set");
+            return;
         }
-        return response.json();
-    })
-    .then(data => {
-        output = JSON.parse(data.body).output; // Store output from the API response
-        console.log("Output received: " + output); // Log output for debugging
-        document.getElementById("outputTextArea").value = output; 
-    })
-    .catch(error => console.error('Error:', error));
+
+        fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                    body: JSON.stringify({ message: enteredText + " api ID " + myAPI}) // Wrap it in a "body" field
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            output = JSON.parse(data.body).output; // Store output from the API response
+            console.log("Output received: " + output); // Log output for debugging
+            document.getElementById("outputTextArea").value = output; 
+        })
+        .catch(error => console.error('Error:', error));
+    });
 });
+
+
+
+function fetchApiData() {
+    return fetch('https://windapp1.s3.ap-southeast-2.amazonaws.com/api_id.txt')
+        .then(response => response.text())
+        .then(apiId => {
+            myAPI = apiId.trim();
+            apiUrl = `https://${apiId.trim()}.execute-api.ap-southeast-2.amazonaws.com/test1/submit`;
+        })
+        .catch(error => console.error("Error fetching API ID:", error));
+}
+
+
+

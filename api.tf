@@ -95,7 +95,6 @@ resource "aws_api_gateway_method_response" "submit_options_response" {
   status_code = 200
 
 
-
   response_models = {  # tells API to use json format to respond .
     "application/json" = "Empty"  # no actual data. it can send just empty json
   }
@@ -192,3 +191,9 @@ output "lambda_function_uri" {
   value       = "arn:aws:apigateway:${var.REGION}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.REGION}:${data.aws_caller_identity.current.account_id}:function:calcTest/invocations"
   description = "Hello Em, this is URI."
 }
+
+resource "local_file" "api_id_file" {
+  content  = aws_api_gateway_rest_api.my_api.id
+  filename = "${path.module}/api_id.txt"
+}
+
