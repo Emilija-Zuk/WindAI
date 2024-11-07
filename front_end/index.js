@@ -1,14 +1,15 @@
 let output = ""; 
-let enteredText = "default";
+let enteredText = "nothing was sent yet";
 let apiUrl = "";
 let myAPI = "";
 
-// MS Login button listener
-document.getElementById("ButtonMS").addEventListener("click", () => {
-    console.log("Login MS");
-});
 
-// Form submission listener
+
+function redirectToTest() {
+    window.location.href = 'test.html'; 
+}
+
+
 document.getElementById("textForm").addEventListener("submit", (event) => {
     event.preventDefault(); // Prevent page refresh
     enteredText = document.getElementById("textInput").value;
@@ -29,7 +30,7 @@ document.getElementById("output").addEventListener("click", () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                    body: JSON.stringify({ message: enteredText + " api ID " + myAPI}) // Wrap it in a "body" field
+                    body: JSON.stringify({ message: enteredText + "' and my api ID is " + myAPI}) // Wrap it in a "body" field
             }),
         })
         .then(response => response.json())
@@ -45,7 +46,7 @@ document.getElementById("output").addEventListener("click", () => {
 
 
 function fetchApiData() {
-    return fetch('https://windapp1.s3.ap-southeast-2.amazonaws.com/api_id.txt')
+    return fetch('https://s3.ap-southeast-2.amazonaws.com/www.emilija.pro/api_id.txt') // change it to a variable
         .then(response => response.text())
         .then(apiId => {
             myAPI = apiId.trim();

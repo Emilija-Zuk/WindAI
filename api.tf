@@ -43,8 +43,9 @@ resource "aws_api_gateway_integration" "submit_post_integration" {
   http_method             = aws_api_gateway_method.submit_post.http_method
   integration_http_method = "POST"
   type                    = "AWS"
-  uri                     = "arn:aws:apigateway:${var.REGION}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.REGION}:${data.aws_caller_identity.current.account_id}:function:calcTest/invocations"
-
+  # uri                     = "arn:aws:apigateway:${var.REGION}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.REGION}:${data.aws_caller_identity.current.account_id}:function:calcTest/invocations"
+  uri = "arn:aws:apigateway:${var.REGION}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.REGION}:${data.aws_caller_identity.current.account_id}:function:lambda_function1/invocations"
+ # create a variable later
 }
 
 
@@ -143,17 +144,14 @@ resource "aws_api_gateway_integration_response" "submit_options_integration_resp
 
 
 
-# LAMBDA PERMISSION
+# new lambda
 resource "aws_lambda_permission" "allow_api_gateway" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = "calcTest"
+  function_name = "lambda_function1"    # create a variable 
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.my_api.execution_arn}/*/*"
 }
-
-
-
 
 # DEPLOYMENT
 resource "aws_api_gateway_deployment" "my_api_deployment" {

@@ -2,7 +2,7 @@
 
 resource "aws_s3_bucket" "static_website" {
 
-  bucket = "windapp1"
+  bucket = "www.emilija.pro"
 
   tags = {
     Name        = "My test bucket"
@@ -60,7 +60,7 @@ resource "aws_s3_bucket_cors_configuration" "cors" {
 
   cors_rule {
     allowed_methods = ["GET", "POST", "PUT"]
-    allowed_origins = ["http://windapp1.s3-website-ap-southeast-2.amazonaws.com"]
+    allowed_origins = ["http://www.emilija.pro.s3-website-ap-southeast-2.amazonaws.com", "http://www.emilija.pro"] # change to a variable
     allowed_headers = ["*"]
     expose_headers  = ["ETag"]
   }
@@ -70,24 +70,24 @@ resource "aws_s3_bucket_cors_configuration" "cors" {
 resource "aws_s3_object" "index_html" {
   bucket = aws_s3_bucket.static_website.id
   key    = "index.html"
-  source = "${path.module}/index.html"
+  source = "${path.module}/front_end/index.html"
   content_type = "text/html"
-  etag          = filemd5("${path.module}/index.html")
+  etag          = filemd5("${path.module}/front_end/index.html")
   # depends_on = [aws_s3_bucket_policy.static_website_policy]
 }
 
 resource "aws_s3_object" "index_js" {
   bucket = aws_s3_bucket.static_website.id
   key    = "index.js"
-  source = "${path.module}/index.js"
+  source = "${path.module}/front_end/index.js"
   content_type = "application/javascript"
-  etag          = filemd5("${path.module}/index.js")
+  etag          = filemd5("${path.module}/front_end/index.js")
   # depends_on = [aws_s3_bucket_policy.static_website_policy]
 }
 
 
 resource "aws_s3_object" "api_id_object" {
-  bucket = "windapp1"
+  bucket = "www.emilija.pro" # change to a variable later
   key    = "api_id.txt"
   content = aws_api_gateway_rest_api.my_api.id 
   etag    = md5(aws_api_gateway_rest_api.my_api.id)
@@ -97,3 +97,10 @@ resource "aws_s3_object" "api_id_object" {
   ]
 }
 
+resource "aws_s3_object" "test_html" {
+  bucket = aws_s3_bucket.static_website.id
+  key    = "test.html"
+  source = "${path.module}/front_end/test.html" # Update the path as needed
+  content_type = "text/html"
+  etag          = filemd5("${path.module}/front_end/test.html")
+}

@@ -13,31 +13,41 @@
         #outputSection {
             margin-top: 40px;
         }
-        #ButtonMS {
-            margin-top: 40px;
-        }
+
     </style>
 </head>
 <body>
-    <h1>Login test1</h1>
-    <form id="textForm">
-        <label for="textInput">Enter text:</label>
+    <h1>TEST</h1>
+    <!-- <form id="textForm">
+        <label for="textInput">Enter text to send to Python Lambda:</label>
         <input type="text" id="textInput" name="textInput" required>
         <button type="submit">Submit</button>
+    </form> -->
+    
+    <!-- later change to divs -->
+    <form id="textForm"> 
+        <p>
+            <label for="textInput">Enter text to send to Python Lambda:</label>
+        </p>
+        <p>
+            <input type="text" id="textInput" name="textInput" required>
+            <button type="submit">Submit</button>
+        </p>
+
     </form>
 
-    <button id="ButtonMS">Login</button>
-
-    <button id="output">Click to receive output</button>
+    <p>
+        Python Lambda:
+    </p>
+    <button id="output">Click to receive</button>
 
 
     <div id="outputSection">
-        <h3>Text received:</h3>
+        <h3>Message received:</h3>
         <textarea id="outputTextArea" rows="4" cols="50" readonly></textarea>
     </div>
 
-    <!-- Include MSAL.js from CDN -->
-    <script src="https://alcdn.msauth.net/browser/2.18.0/js/msal-browser.min.js"></script>
+
     <script src="index.js"></script>
 </body>
 </html>
