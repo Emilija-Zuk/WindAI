@@ -1,0 +1,48 @@
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: whitesmoke;
+    margin: 0;
+    overflow: hidden;
+}
+
+.half-circle-svg {
+    width: 100%;
+    max-width: 400px;
+}
+
+.half-circle-text {
+    fill: rgb(144, 62, 221); 
+    font-size: 24px;
+    font-weight: bold;
+    text-anchor: middle; 
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 15px; 
+    margin-top: 20px;
+}
+
+#formSection, #outputSection {
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; 
+    align-items: center;
+    gap: 10px; 
+}
+
+.inputGroup, .outputGroup {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+   
+}

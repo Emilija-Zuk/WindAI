@@ -13,7 +13,7 @@ function redirectToTest() {
 document.getElementById("textForm").addEventListener("submit", (event) => {
     event.preventDefault(); // Prevent page refresh
     enteredText = document.getElementById("textInput").value;
-    console.log("Text entered: " + enteredText );
+    console.log("Text entered: " + enteredText);
 });
 
 // Output button listener
