@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/styles/styles.css">
+    <link rel="stylesheet" href="public/styles/waves.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <title>Emilija's App</title>
 </head>
 <body>
 
-    <svg class="half-circle-svg" viewBox="0 -25 300 50">
+ 
+
+    <div id="waves-container" class="background"></div>
+
+  <svg class="half-circle-svg" viewBox="0 -25 300 50">
         <!-- Define the half-circle path -->
         <path id="half-circle-path" d="M 20 130 A 130 130 0 0 1 280 130" fill="none" stroke="none"/>
         
@@ -18,21 +26,27 @@
             WELCOME
           </textPath>
         </text>
-      </svg>
+      </svg> 
     
 
 
-        <div class="button-container">
-            <div>
-              <button id="test" type="button" onclick="redirectToTest()">Backend Test</button>
-            </div>
-            <div>
-              <button id="wind">Wind App</button>
-            </div>
-            <div>
-              <button id="about">About</button>
-            </div>
+      <div class="button-container">
+        <div>
+            <button id="test" type="button" onclick="redirectToTest()">
+                <i class="fa fa-cogs"></i> Backend Test
+            </button>
         </div>
+        <div>
+            <button id="wind">
+                <i class="fa fa-wind"></i> Wind App
+            </button>
+        </div>
+        <div>
+            <button id="about">
+                <i class="fa fa-info-circle"></i> About
+            </button>
+        </div>
+    </div>
     
     
     <script src="index.js"></script>
