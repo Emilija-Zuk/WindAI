@@ -23,19 +23,6 @@ resource "aws_api_gateway_method" "submit_post" {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # LAMBDA INTEGRATION
 resource "aws_api_gateway_integration" "submit_post_integration" {
   rest_api_id             = aws_api_gateway_rest_api.my_api.id
@@ -47,7 +34,6 @@ resource "aws_api_gateway_integration" "submit_post_integration" {
   uri = "arn:aws:apigateway:${var.REGION}:lambda:path/2015-03-31/functions/arn:aws:lambda:${var.REGION}:${data.aws_caller_identity.current.account_id}:function:lambda_function1/invocations"
  # create a variable later
 }
-
 
 
 # POST SETUP
@@ -67,8 +53,6 @@ resource "aws_api_gateway_method_response" "submit_post_response" {
   
   }
 }
-
-
 
 # OPTIONS
 resource "aws_api_gateway_method" "submit_options" {
@@ -107,7 +91,6 @@ resource "aws_api_gateway_method_response" "submit_options_response" {
   }
 }
 
-
 resource "aws_api_gateway_integration_response" "lambda_integration_response" {
   rest_api_id = aws_api_gateway_rest_api.my_api.id
   resource_id = aws_api_gateway_resource.submit.id
@@ -125,9 +108,6 @@ resource "aws_api_gateway_integration_response" "lambda_integration_response" {
 }
 
 
-
-
-
 resource "aws_api_gateway_integration_response" "submit_options_integration_response" {
   rest_api_id = aws_api_gateway_rest_api.my_api.id
   resource_id = aws_api_gateway_resource.submit.id
@@ -140,8 +120,6 @@ resource "aws_api_gateway_integration_response" "submit_options_integration_resp
     "method.response.header.Access-Control-Allow-Methods" = "'OPTIONS,POST'"
   }
 }
-
-
 
 
 # new lambda
@@ -182,7 +160,6 @@ resource "aws_api_gateway_stage" "my_stage" {
   rest_api_id   = aws_api_gateway_rest_api.my_api.id
   stage_name    = "test1"
 }
-
 
 
 output "lambda_function_uri" {

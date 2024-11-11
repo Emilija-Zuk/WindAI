@@ -5,30 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/styles/styles.css">
     <link rel="stylesheet" href="public/styles/waves.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <title>Emilija's App</title>
 </head>
 <body>
 
- 
-
     <div id="waves-container" class="background"></div>
 
-  <svg class="half-circle-svg" viewBox="0 -25 300 50">
-        <!-- Define the half-circle path -->
+    <svg class="half-circle-svg" viewBox="0 -25 300 50">
+ 
         <path id="half-circle-path" d="M 20 130 A 130 130 0 0 1 280 130" fill="none" stroke="none"/>
         
-        <!-- Text along the path -->
         <text class="half-circle-text">
           <textPath href="#half-circle-path" startOffset="50%">
             WELCOME
           </textPath>
         </text>
       </svg> 
-    
-
 
       <div class="button-container">
         <div>
@@ -37,12 +31,12 @@
             </button>
         </div>
         <div>
-            <button id="wind">
+            <button id="wind" type="button" onclick="redirectToWind()">
                 <i class="fa fa-wind"></i> Wind App
             </button>
         </div>
         <div>
-            <button id="about">
+            <button id="about" type="button" onclick="redirectToAbout()">
                 <i class="fa fa-info-circle"></i> About
             </button>
         </div>

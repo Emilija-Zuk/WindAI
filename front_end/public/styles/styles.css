@@ -15,11 +15,11 @@
   }
 
   html, body {
-    height: 100%; /* Ensure both html and body take full height of the viewport */
+    height: 100%; 
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent scrolling */
-    box-sizing: border-box; /* Ensure padding and borders are included in the height calculation */
+    overflow: hidden; 
+    box-sizing: border-box; /*  padding and borders are included in height */
 }
 
 body {
@@ -29,25 +29,17 @@ body {
     justify-content: center;
     flex-direction: column;
     /* height: 100vh; */
-    
     /* background-color: whitesmoke; */
     margin: 0;
     /* overflow: hidden; */
     box-sizing: border-box; 
-
- 
-    height: 100%; /* Ensure the body takes up 100% of the screen height */
-   
+    height: 100%; 
 } 
-
-
-
-
 
 .half-circle-svg {
     width: 100%;
     max-width: 400px;
-    display: block;          /* Make the SVG a block element */
+    display: block;         
     margin: 0 auto;          /* Center it horizontally */
 }
 
@@ -66,12 +58,9 @@ body {
     margin-top: 20px;
     font-size: 130%;
     padding: 2rem 0;
-    
-    
 }
 
 .button-container button {
-
     color: #df1888;
 	font-family: Arial, sans-serif;
 	line-height: 1.5em;
@@ -80,8 +69,7 @@ body {
 	margin: 0 1.2em;
 	padding: 0.6em 0;
 	transition: 150ms;
-    width: 150px;  
-    
+    width: 150px;   
 }
 
 h1 {
@@ -90,7 +78,6 @@ h1 {
 }
 
 #outputTextArea {
-    
     font-size: 18px;
     border-radius: 5px;
     line-height: 22px;
@@ -102,7 +89,6 @@ h1 {
     width: 70%;
     box-sizing: border-box;
     outline: 0;
-   
   }
 
 .button-container button:hover {
@@ -112,13 +98,11 @@ h1 {
 
 
 button i {
-    margin-right: 8px; /* Adds space between the icon and text */
+    margin-right: 8px; /* space between the icon and text */
 }
 
 
-
 button {
-  
   align-items: center;
   background: #FFFFFF;
   border: 0 solid #E2E8F0;
@@ -141,13 +125,11 @@ button {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
- 
 }
 
 
 label {
     padding: 20px;
-    
 }
 
 #textInput{
@@ -167,11 +149,11 @@ label {
 #formSection, #outputSection {
     display: flex;
     flex-direction: column; 
-    justify-content: center; /* Ensure vertical centering */
+    justify-content: center; 
     align-items: center;
     gap: 10px; 
-    padding: 0; /* Reset padding to prevent extra space */
-    margin: 0;  /* Reset margin as well */
+    padding: 0; 
+    margin: 0;  
 }
 
 .inputGroup, .outputGroup {
@@ -179,9 +161,14 @@ label {
     align-items: center;
     gap: 10px; 
     flex-direction: column; 
-   
 }
 
 #textInput {
     height: 25px;
+}
+
+img {
+    max-width: 200px; 
+    height: auto;
+    border-radius: 50%;
 }

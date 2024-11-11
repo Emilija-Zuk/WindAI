@@ -21,13 +21,13 @@ document.getElementById("textForm").addEventListener("submit", (event) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                    body: JSON.stringify({ message: enteredText + "' and my api ID is " + myAPI}) // Wrap it in a "body" field
+                    body: JSON.stringify({ message: enteredText + "' and my api ID is " + myAPI}) 
             }),
         })
         .then(response => response.json())
         .then(data => {
-            output = JSON.parse(data.body).output; // Store output from the API response
-            console.log("Output received: " + output); // Log output for debugging
+            output = JSON.parse(data.body).output; 
+            console.log("Output received: " + output); 
             document.getElementById("outputTextArea").value = output; 
         })
         .catch(error => console.error('Error:', error));

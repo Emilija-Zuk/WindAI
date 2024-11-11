@@ -1,5 +1,4 @@
 
-
 data "archive_file" "lambda1" {
   type        = "zip"
   source_dir  = "${path.module}/python/"
@@ -47,21 +46,6 @@ resource "aws_lambda_function" "test_lambda" {
 } 
 
 
-
-
-
-
-
-
-
-
-# I can upload zip file to s3 bucket but i can use a local zip file
-# resource "aws_s3_object" "lambda1" {
-#   bucket = aws_s3_bucket.lambda_bucket.id # change this.
-#   key    = "lambda1.zip"  # that is created
-#   source = data.archive_file.lambda1.output_path
-#   etag = filemd5(data.archive_file.lambda1.output_path)
-# }
 
 
 
