@@ -21,6 +21,8 @@ const WindStrengthChart = ({ data }) => {
           return 'rgba(255, 0, 0, 0.3)'; // Green for >= 20 knots rgba(0, 255, 0, 0.3)
       };
 
+
+      
       const createGradientFill = (context, colorStops) => {
           const gradient = context.createLinearGradient(0, 0, 0, 400);
           colorStops.forEach((stop, index) => {
