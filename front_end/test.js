@@ -21,7 +21,7 @@ document.getElementById("textForm").addEventListener("submit", (event) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                    body: JSON.stringify({ message: enteredText + "' and my api ID is " + myAPI}) 
+                    body: JSON.stringify({ message: enteredText + "'"}) 
             }),
         })
         .then(response => response.json())

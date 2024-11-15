@@ -43,15 +43,20 @@ const WindStrengthChart = ({ data }) => {
             label: 'Min Wind Speed (knots)',
             data: minWind,
             fill: '+1',   
-            backgroundColor: gradientMin,  
+            backgroundColor: 'rgba(211, 211, 211, 0.3)',  
             borderColor: gradientMin, 
+            borderWidth: 8,
+            pointRadius: 0, 
+            
           },
           {
-            label: 'Max Wind Speed (knots)',
+            label: 'Max Wind Speed Gust (knots)',
             data: maxWind,
             fill: '+1',  
-            backgroundColor: gradientMin,  
-            borderColor: gradientMin,
+            backgroundColor: 'rgba(211, 211, 211, 0.3)',  
+            borderColor: 'rgba(211, 211, 211, 0.3)',
+            pointRadius: 0, 
+            
           },
         ],
       };
@@ -67,7 +72,7 @@ const WindStrengthChart = ({ data }) => {
             },
           },
           legend: {
-            display: false, // Hide the legend
+            // display: false, // Hide the legend
           },
         },
         scales: {
