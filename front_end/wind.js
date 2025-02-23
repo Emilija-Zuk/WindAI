@@ -1,71 +1,55 @@
 const WindStrengthChart = ({ data }) => {
-
-
   const chartRef = React.useRef(null);
 
   React.useEffect(() => {
     if (chartRef.current && window.Chart) {
       const ctx = chartRef.current.getContext('2d');
-      const labels = data.map((point) => point.time);
-      const minWind = data.map((point) => point.min);
-      const maxWind = data.map((point) => point.max);
+      const labels = data.map((point) => point.x); // Use 'x' as time
+      const yValues = data.map((point) => point.y); // Use 'y' as wind speed
 
       const getWindColor = (speed) => {
-          // console.log('Wind speed:', speed);  
-          if (speed < 14) {
-            return 'rgba(0, 255, 0, 0.3)'; // Red for < 14 knots rgba(255, 0, 0, 0.3)
-          }
-          if (speed >= 14 && speed <= 19) {
-            return 'rgba(255, 255, 0, 0.3)'; // Yellow for 14-19 knots
-          }
-          return 'rgba(255, 0, 0, 0.3)'; // Green for >= 20 knots rgba(0, 255, 0, 0.3)
+        if (speed < 14) {
+          return 'rgba(0, 255, 0, 0.3)';
+        }
+        if (speed >= 14 && speed <= 19) {
+          return 'rgba(255, 255, 0, 0.3)';
+        }
+        return 'rgba(255, 0, 0, 0.3)';
       };
 
-
-      
       const createGradientFill = (context, colorStops) => {
-          const gradient = context.createLinearGradient(0, 0, 0, 400);
-          colorStops.forEach((stop, index) => {
+        const gradient = context.createLinearGradient(0, 0, 0, 400);
+        colorStops.forEach((stop) => {
           gradient.addColorStop(stop.position, stop.color);
-          });
-          return gradient;
+        });
+        return gradient;
       };
 
-      const colorStopsMin = minWind.map((speed) => ({
-          position: (speed - Math.min(...minWind)) / (Math.max(...minWind) - Math.min(...minWind)),
-          color: getWindColor(speed),
+      const colorStops = yValues.map((speed) => ({
+        position: (speed - Math.min(...yValues)) / (Math.max(...yValues) - Math.min(...yValues)),
+        color: getWindColor(speed),
       }));
 
-      const gradientMin = createGradientFill(ctx, colorStopsMin);
+      const gradient = createGradientFill(ctx, colorStops);
 
       const chartData = {
         labels,
         datasets: [
           {
-            label: 'Min Wind Speed (knots)',
-            data: minWind,
-            fill: '+1',   
-            backgroundColor: 'rgba(211, 211, 211, 0.3)',  
-            borderColor: gradientMin, 
+            label: 'Wind Speed (knots)',
+            data: yValues,
+            fill: '+1',
+            backgroundColor: 'rgba(211, 211, 211, 0.3)',
+            borderColor: gradient,
             borderWidth: 8,
-            pointRadius: 0, 
-            
-          },
-          {
-            label: 'Max Wind Speed Gust (knots)',
-            data: maxWind,
-            fill: '+1',  
-            backgroundColor: 'rgba(211, 211, 211, 0.3)',  
-            borderColor: 'rgba(211, 211, 211, 0.3)',
-            pointRadius: 0, 
-            
+            pointRadius: 0,
           },
         ],
       };
-  
+
       const options = {
         responsive: true,
-        maintainAspectRatio: false, // custom height for the chart
+        maintainAspectRatio: false,
         plugins: {
           tooltip: {
             enabled: true,
@@ -74,7 +58,7 @@ const WindStrengthChart = ({ data }) => {
             },
           },
           legend: {
-            // display: false, // Hide the legend
+            display: false, // Hide the legend
           },
         },
         scales: {
@@ -83,56 +67,56 @@ const WindStrengthChart = ({ data }) => {
           },
           y: {
             title: { display: true, text: 'Wind Speed (knots)' },
-            min: 0, 
-            max: 30, 
+            min: 0,
+            max: 30,
             ticks: {
-              stepSize: 5, // Step size between ticks on the Y-axis
+              stepSize: 5,
             },
           },
         },
       };
-  
-        
+
       new window.Chart(ctx, {
         type: 'line',
         data: chartData,
         options: options,
       });
-
     }
   }, [data]);
-  
+
   return (
-    <div style={{ position: 'relative', width: '100%', height: '450px' }}> {/* size */}
+    <div style={{ position: 'relative', width: '100%', height: '450px' }}>
       <canvas ref={chartRef}></canvas>
     </div>
   );
 };
-  
-const App = () => {
 
+const App = () => {
   const [data, setData] = React.useState([]);
+  const [date, setDate] = React.useState('');
+
+  
 
   React.useEffect(() => {
-    Papa.parse('wind_data.csv', {
-      download: true,
-      header: true,
-      complete: (results) => {
-        const parsedData = results.data
-          .map((row) => ({
-            time: row.time,
-            min: Number(row.min),
-            max: Number(row.max),
-          }))
-          .filter((row) => row.time && row.min && row.max);
+    // Fetch the JSON data instead of CSV
+    fetch('graph_data.json')
+      .then((response) => response.json())
+      .then((jsonData) => {
+        const parsedData = jsonData.data.map((row) => ({
+          x: row.x,
+          y: row.y,
+        }));
         setData(parsedData);
-      },
-    });
+        setDate(jsonData.metadata.date); // Set the date from metadata
+      })
+      .catch((error) => {
+        console.error("Error loading the JSON data: ", error);
+      });
   }, []);
 
   return (
     <div>
-      <h1>Yesterday's Wind</h1>
+      <h1>{date ? `Wind Data for ${date}` : 'Loading data...'}</h1>  
       {data.length > 0 ? (
         <WindStrengthChart data={data} />
       ) : (
@@ -141,7 +125,5 @@ const App = () => {
     </div>
   );
 };
-  
- 
+
 ReactDOM.render(<App />, document.getElementById('root'));
-  
