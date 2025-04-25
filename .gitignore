@@ -1,31 +1,31 @@
 # Ignore the .terraform directory inside the terraform folder
-terraform/.terraform/*
+infra/.terraform/*
 
 # Ignore .tfstate files in the terraform folder
-terraform/*.tfstate
-terraform/*.tfstate.*
+infra/*.tfstate
+infra/*.tfstate.*
 
 # Ignore Terraform crash log files in the terraform folder
-terraform/crash.log
-terraform/crash.*.log
+infra/crash.log
+infra/crash.*.log
 
 # Ignore all .tfvars files in the terraform folder
-terraform/*.tfvars
-terraform/*.tfvars.json
+infra/*.tfvars
+infra/*.tfvars.json
 
 # Ignore override files in the terraform folder
-terraform/override.tf
-terraform/override.tf.json
-terraform/*_override.tf
-terraform/*_override.tf.json
+infra/override.tf
+infra/override.tf.json
+infra/*_override.tf
+infra/*_override.tf.json
 
 # Ignore Terraform plan and lock files
-terraform/.terraform.tfstate.lock.info
-terraform/*.tfplan
+infra/.terraform.tfstate.lock.info
+infra/*.tfplan
 
 # Ignore Terraform CLI configuration files
-terraform/.terraformrc
-terraform/terraform.rc
+infra/.terraformrc
+infra/terraform.rc
 
 # Ignore node_modules in the client folder
 client/node_modules/
