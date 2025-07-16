@@ -3,7 +3,7 @@ import datetime
 
 print("hello em")
 
-with open('GC2025-02-21.json', 'r') as file:
+with open('GC2025-07-15.json', 'r') as file:
     data = json.load(file)
 
 # value_x = data["observationalGraphs"]["wind"]["dataConfig"]["series"]["groups"][0]["points"][n]["x"]
@@ -26,7 +26,7 @@ final_output = {
     "metadata": {
         "title": "Wind Strength Over Time",
         "unit": "knots",
-        "date": "21 February 2025"
+        "date": "15 July 2025"
     },
     "data": graph_data
 }
