@@ -2,6 +2,12 @@
 
 WindAI is a web application that visualizes wind data and provides a simple interface to test backend Python Lambda functions via AWS API Gateway. The project uses a static website hosted on AWS S3, with infrastructure managed by Terraform.
 
+## Project Status
+
+This project is **finished for now** and served as an excellent frontend learning exercise using vanilla JavaScript, React components, and Chart.js for data visualization. It provided hands-on experience with AWS serverless architecture, Terraform infrastructure management, and integrating frontend with backend APIs.
+
+**Next Steps:** I'm currently working on a new project called **wind-prediction** which will feature a proper React project setup with modern tooling and more advanced wind forecasting capabilities.
+
 ## Features
 
 - **Wind Data Visualization:**  
@@ -90,4 +96,5 @@ WindAI/
 
 **Note:**  
 - The API Gateway ID is dynamically fetched by the frontend from `api_id.txt` in the S3 bucket.
-- For more details, see comments in the Terraform files
+- For more details, see comments in the Terraform files in `infra/`.
+
